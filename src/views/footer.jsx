@@ -17,6 +17,18 @@ export default class Footer extends Component {
       </a>
     )
   }
+  renderUndo() {
+    return (
+      <div>
+        <button onClick={this.props.onUndo} disabled={this.props.undoDisabled}>
+          Undo
+        </button>
+        <button onClick={this.props.onRedo} disabled={this.props.redoDisabled}>
+          Redo
+        </button>
+      </div>
+    )
+  }
   render() {
     return(
       <footer>
@@ -28,6 +40,8 @@ export default class Footer extends Component {
         {', '}
         {this.renderFilter(VisibilityFilters.SHOW_ACTIVE, 'Active')}
         .
+        {' '}
+        {this.renderUndo()}
       </footer>
     )
   }

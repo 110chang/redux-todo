@@ -20,6 +20,7 @@
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "redux": "^3.0.6",
+    "redux-undo": "^0.6.0",
     "vinyl-source-stream": "^1.1.0"
   }
 }

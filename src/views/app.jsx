@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
 import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from '../actions'
 import AddTodo from './addtodo'
 import TodoList from './todolist'
@@ -10,6 +11,8 @@ import Footer from './footer'
 class App extends Component {
   render() {
     const { dispatch, visibleTodos, visibilityFilter } = this.props
+    let { undoDisabled, redoDisabled } = this.props
+    console.log(this.props)
     return (
       <div>
         <AddTodo 
@@ -23,6 +26,10 @@ class App extends Component {
         <Footer
           filter={visibilityFilter}
           onFilterChange={filter => dispatch(setVisibilityFilter(filter))}
+          onUndo={() => dispatch(ActionCreators.undo())}
+          onRedo={() => dispatch(ActionCreators.redo())}
+          undoDisabled={undoDisabled}
+          redoDisabled={redoDisabled}
         />
       </div>
     )
@@ -42,7 +49,9 @@ function selectTodos(todos, filter) {
 
 function select(state) {
   return {
-    visibleTodos: selectTodos(state.todos, state.visibilityFilter),
+    undoDisabled: state.todos.past.length === 0,
+    redoDisabled: state.todos.future.length === 0,
+    visibleTodos: selectTodos(state.todos.present, state.visibilityFilter),
     visibilityFilter: state.visibilityFilter
   }
 }
