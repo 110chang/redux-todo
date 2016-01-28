@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
-var browsersync = require('browser-sync')
+var browsersync = require('browser-sync');
 
 gulp.task('bundle', function() {
   browserify({
@@ -12,7 +12,7 @@ gulp.task('bundle', function() {
     extensions: ['.jsx'],
     debug: !gulp.env.production
   }).transform(babelify, {
-    presets: ['es2015', 'react'],
+    presets: ['es2015', 'react', 'stage-2'],
     extensions: ['.jsx']
   })
     .bundle()

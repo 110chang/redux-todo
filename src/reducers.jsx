@@ -25,9 +25,14 @@ function todo(state, action) {
       if (state.id !== action.id) {
         return state
       }
-      return Object.assign({}, state, {
+      //return Object.assign({}, state, {
+      //  completed: true
+      //})
+      // you need preset-stage-2 to transpile object spread
+      return {
+        ...state,
         completed: true
-      })
+      }
     default:
       return state
   }
