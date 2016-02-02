@@ -29,6 +29,15 @@ export default class Footer extends Component {
       </div>
     )
   }
+  renderFetch() {
+    return (
+      <div>
+        <button onClick={this.props.onFetch}>
+          Fetch
+        </button>
+      </div>
+    )
+  }
   render() {
     return(
       <footer>
@@ -42,6 +51,8 @@ export default class Footer extends Component {
         .
         {' '}
         {this.renderUndo()}
+        {' '}
+        {this.renderFetch()}
       </footer>
     )
   }
