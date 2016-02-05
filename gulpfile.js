@@ -9,11 +9,11 @@ var browsersync = require('browser-sync');
 gulp.task('bundle', function() {
   browserify({
     entries: ['./src/main.jsx'],
-    extensions: ['.jsx'],
+    extensions: ['.jsx', '.es6'],
     debug: !gulp.env.production
   }).transform(babelify, {
     presets: ['es2015', 'react', 'stage-2'],
-    extensions: ['.jsx']
+    extensions: ['.jsx', '.es6']
   })
     .bundle()
     .pipe(source('bundle.js'))
