@@ -41,3 +41,4 @@ store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
 
 // Stop listening to state updates
 unsubscribe()
+
