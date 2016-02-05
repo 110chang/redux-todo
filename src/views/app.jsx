@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ActionCreators } from 'redux-undo'
-import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from '../actions'
+import { addTodo, completeTodo, getData, setVisibilityFilter, VisibilityFilters } from '../actions'
 import AddTodo from './addtodo'
 import TodoList from './todolist'
 import Footer from './footer'
@@ -30,6 +30,7 @@ class App extends Component {
           onRedo={() => dispatch(ActionCreators.redo())}
           undoDisabled={undoDisabled}
           redoDisabled={redoDisabled}
+          onFetch={() => dispatch(getData())}
         />
       </div>
     )

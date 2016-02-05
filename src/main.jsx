@@ -2,14 +2,20 @@
 
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import App from './views/app'
 import todoApp from './reducers'
+import thunk from 'redux-thunk'
 
 import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from './actions'
 
-let store = createStore(todoApp)
+// create a store that has redux-thunk middleware enabled
+const createStoreWithMiddleware = applyMiddleware(
+  thunk
+)(createStore);
+
+let store = createStoreWithMiddleware(todoApp)
 
 render(
   <Provider store={store}>
@@ -35,3 +41,4 @@ store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
 
 // Stop listening to state updates
 unsubscribe()
+

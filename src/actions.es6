@@ -1,5 +1,7 @@
 // actions.jsx
 
+import request from 'superagent'
+
 export const ADD_TODO = 'ADD_TODO'
 export const COMPLETE_TODO = 'COMPLETE_TODO'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
@@ -27,3 +29,12 @@ export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter }
 }
 
+export function getData() {
+  return dispatch => {
+    return request.get('./data.json').end((err, res) => {
+      JSON.parse(res.text).forEach((todo) => {
+        dispatch(addTodo(todo.text))
+      })
+    });
+  }
+}
